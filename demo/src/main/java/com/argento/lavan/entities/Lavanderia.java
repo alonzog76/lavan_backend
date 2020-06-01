@@ -14,32 +14,32 @@ public class Lavanderia {
 
 	@Id @GeneratedValue
 	Long id;
-	
+
 	@OneToMany(mappedBy = "lavanderia", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<Cliente> clienti = new ArrayList<>(); 
-	
+
 	@OneToMany(mappedBy = "lavanderia", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<Prezzo> prezzi = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "lavanderia", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<Bolla> bolle = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "lavanderia", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<TipoCapoCustom> tipiCapoCustom = new ArrayList<>();
-	
+
 	String nome;
-	
+
 	String descrizione;
-	
-	 public void addCliente(Cliente cliente) {
-		 clienti.add(cliente);
-		 cliente.setLavanderia(this);
-	    }
-	 
-	   public void removeCliente(Cliente cliente) {
-	        clienti.remove(cliente);
-	        cliente.setLavanderia(null);
-	    }
+
+	public void addCliente(Cliente cliente) {
+		clienti.add(cliente);
+		cliente.setLavanderia(this);
+	}
+
+	public void removeCliente(Cliente cliente) {
+		clienti.remove(cliente);
+		cliente.setLavanderia(null);
+	}
 
 	public Long getId() {
 		return id;

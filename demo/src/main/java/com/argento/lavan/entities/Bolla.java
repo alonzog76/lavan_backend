@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Bolla {
@@ -12,7 +12,7 @@ public class Bolla {
 	@Id @GeneratedValue
 	Long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "lavanderia")
 	Lavanderia lavanderia;
 	
