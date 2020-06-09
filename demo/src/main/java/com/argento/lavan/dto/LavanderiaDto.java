@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LavanderiaDto {
 
+	Long lavanderiaId;
+	
 	String nome;
 
 	String descrizione;
@@ -31,6 +33,14 @@ public class LavanderiaDto {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public Long getLavanderiaId() {
+		return lavanderiaId;
+	}
+
+	public void setLavanderiaId(Long lavanderiaId) {
+		this.lavanderiaId = lavanderiaId;
 	}
 
 }
