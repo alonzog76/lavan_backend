@@ -74,4 +74,8 @@ public class LavanderiaService {
 		return lavanderiaRepository.findById(id).orElse(null);
 	}
 
+	public void deleteLavanderia(Long id) {
+		lavanderiaRepository.deleteById(id);
+	}
+
 }

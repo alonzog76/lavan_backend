@@ -1,6 +1,7 @@
 package com.argento.lavan.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,6 @@ import com.argento.lavan.entities.Lavanderia;
 import com.argento.lavan.service.LavanderiaService;
 
 
-
-
 @RestController(value = "/lavanderie")
 public class LavanderiaController {
 	
@@ -28,26 +27,41 @@ public class LavanderiaController {
 	
 	
 	@GetMapping(produces = "application/json")
-	public ResponseEntity<List<Lavanderia>> getLavanderie(){
-		return null;
+	public ResponseEntity<List<LavanderiaDto>> getLavanderie(){
+		List<Lavanderia> lavanderie = lavanderiaService.retrieveAllLavanderia();
+
+		List<LavanderiaDto> lavanderiaDtos = lavanderie.stream().
+				map(LavanderiaDto::fromModel).
+				collect(Collectors.toList());
+
+		return new ResponseEntity<>(lavanderiaDtos, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="{id}", produces = "application/json")
-	public ResponseEntity<Lavanderia> getLavanderia(
-			@PathVariable String id){
+	public ResponseEntity<LavanderiaDto> getLavanderia(@PathVariable Long id){
 		
-		return null;
+		Lavanderia lavanderia = lavanderiaService.retrieveOneLavanderia(id);
+		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
 	}
 
+	/**
+	 * @param lavanderiaDto
+	 * @return
+	 */
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<LavanderiaDto> createLavanderia(
 			@RequestBody LavanderiaDto lavanderiaDto){
 		
 		Lavanderia lavanderia = lavanderiaService.createLavanderia(lavanderiaDto);
 		
-		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
+		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.CREATED);
 	}
 	
+	/**
+	 * @param id
+	 * @param dto
+	 * @return
+	 */
 	@PutMapping(value="{id}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<LavanderiaDto> updateLavanderia(Long id, LavanderiaDto dto){
 		
@@ -56,9 +70,15 @@ public class LavanderiaController {
 		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
 	}
 	
+	/**
+	 * @return
+	 */
 	@DeleteMapping(value="{id}")
-	public ResponseEntity<Void> deleteLavanderia(){
-		return null;
+	public ResponseEntity<Void> deleteLavanderia(Long id){
+		
+		lavanderiaService.deleteLavanderia(id);
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 }
