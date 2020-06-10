@@ -3,6 +3,8 @@ package com.argento.lavan.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.argento.lavan.entities.Lavanderia;
+
 public class LavanderiaDto {
 
 	Long lavanderiaId;
@@ -42,5 +44,20 @@ public class LavanderiaDto {
 	public void setLavanderiaId(Long lavanderiaId) {
 		this.lavanderiaId = lavanderiaId;
 	}
+	
+	/**
+	 * @param lavanderia
+	 * @return
+	 */
+	public static LavanderiaDto fromModel(Lavanderia lavanderia) {
+		
+		LavanderiaDto dto = new LavanderiaDto();
+		dto.setNome(lavanderia.getNome());
+		dto.setDescrizione(lavanderia.getDescrizione());
+		
+		return dto;
+		
+	}
+	
 
 }

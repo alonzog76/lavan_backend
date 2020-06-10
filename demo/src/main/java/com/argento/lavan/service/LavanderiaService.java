@@ -24,9 +24,9 @@ public class LavanderiaService {
 	 * @param dto
 	 * @return
 	 */
-	public LavanderiaDto createLavanderia(final LavanderiaDto dto) {
+	public Lavanderia createLavanderia(final LavanderiaDto dto) {
 
-		log.info("Creating new lavanderia with name {}" + dto.getNome());
+		log.info("Creating new lavanderia with name {}", dto.getNome());
 
 		Lavanderia lavanderia = new Lavanderia();
 		lavanderia.setNome(dto.getNome());
@@ -34,11 +34,9 @@ public class LavanderiaService {
 
 		Lavanderia newLavanderia = lavanderiaRepository.save(lavanderia);
 
-		log.info("Created new lavanderia with id {}" + newLavanderia.getId());
-
-		dto.setLavanderiaId(newLavanderia.getId());
+		log.info("Created new lavanderia with id {}",  newLavanderia.getId());
 		
-		return dto;
+		return lavanderia;
 
 	}
 
@@ -49,7 +47,7 @@ public class LavanderiaService {
 	 */
 	public Lavanderia updateLavanderia(final Long id, final LavanderiaDto dto){
 		
-		log.info("Updating lavanderia with id {}" + id);
+		log.info("Updating lavanderia with id {}", id);
 		
 		Lavanderia lavanderia = retrieveOneLavanderia(id);
 
@@ -57,7 +55,7 @@ public class LavanderiaService {
 			lavanderia.setNome(dto.getNome());
 			lavanderia.setDescrizione(dto.getDescrizione());
 		}else{
-			log.error("Lavanderia with id {} not found" + id);
+			log.error("Lavanderia with id {} not found", id);
 		}
 
 		return lavanderia;

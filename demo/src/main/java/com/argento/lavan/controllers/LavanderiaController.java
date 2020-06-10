@@ -43,16 +43,17 @@ public class LavanderiaController {
 	public ResponseEntity<LavanderiaDto> createLavanderia(
 			@RequestBody LavanderiaDto lavanderiaDto){
 		
-		lavanderiaService.createLavanderia(lavanderiaDto);
+		Lavanderia lavanderia = lavanderiaService.createLavanderia(lavanderiaDto);
 		
-		return new ResponseEntity<>(lavanderiaDto, HttpStatus.OK);
+		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
 	}
 	
 	@PutMapping(value="{id}", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Void> updateLavanderia(Long id, LavanderiaDto dto){
+	public ResponseEntity<LavanderiaDto> updateLavanderia(Long id, LavanderiaDto dto){
 		
-		lavanderiaService.updateLavanderia(id, dto);
-		return return new ResponseEntity<>(lavanderiaDto, HttpStatus.OK);;
+		Lavanderia lavanderia = lavanderiaService.updateLavanderia(id, dto);
+		
+		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="{id}")
