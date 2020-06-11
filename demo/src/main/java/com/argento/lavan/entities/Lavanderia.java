@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.argento.lavan.dto.LavanderiaDto;
+
 @Entity
 public class Lavanderia {
 
@@ -28,7 +30,6 @@ public class Lavanderia {
 	List<TipoCapoCustom> tipiCapoCustom = new ArrayList<>();
 
 	String nome;
-
 	String descrizione;
 
 	public void addCliente(Cliente cliente) {
@@ -95,5 +96,12 @@ public class Lavanderia {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public LavanderiaDto toDto() {
+		LavanderiaDto dto = new LavanderiaDto();
+		dto.setNome(nome);
+		dto.setDescrizione(descrizione);
+		return dto;
 	}
 }

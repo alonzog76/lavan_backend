@@ -67,7 +67,6 @@ public class LavanderiaService {
 	 */
 	public List<Lavanderia> retrieveAllLavanderia(){
 		return lavanderiaRepository.findAll();
-
 	}
 	
 	public Lavanderia retrieveOneLavanderia(Long id){
@@ -76,6 +75,10 @@ public class LavanderiaService {
 
 	public void deleteLavanderia(Long id) {
 		lavanderiaRepository.deleteById(id);
+	}
+
+	public Lavanderia persist(Lavanderia lavanderia) {
+		return lavanderiaRepository.saveAndFlush(lavanderia);	
 	}
 
 }

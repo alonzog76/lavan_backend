@@ -31,7 +31,7 @@ public class LavanderiaController {
 		List<Lavanderia> lavanderie = lavanderiaService.retrieveAllLavanderia();
 
 		List<LavanderiaDto> lavanderiaDtos = lavanderie.stream().
-				map(LavanderiaDto::fromModel).
+				map(Lavanderia::toDto).
 				collect(Collectors.toList());
 
 		return new ResponseEntity<>(lavanderiaDtos, HttpStatus.OK);
@@ -41,7 +41,7 @@ public class LavanderiaController {
 	public ResponseEntity<LavanderiaDto> getLavanderia(@PathVariable Long id){
 		
 		Lavanderia lavanderia = lavanderiaService.retrieveOneLavanderia(id);
-		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
+		return new ResponseEntity<>(lavanderia.toDto(), HttpStatus.OK);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class LavanderiaController {
 		
 		Lavanderia lavanderia = lavanderiaService.createLavanderia(lavanderiaDto);
 		
-		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.CREATED);
+		return new ResponseEntity<>(lavanderia.toDto(), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class LavanderiaController {
 		
 		Lavanderia lavanderia = lavanderiaService.updateLavanderia(id, dto);
 		
-		return new ResponseEntity<>(LavanderiaDto.fromModel(lavanderia), HttpStatus.OK);
+		return new ResponseEntity<>(lavanderia.toDto(), HttpStatus.OK);
 	}
 	
 	/**

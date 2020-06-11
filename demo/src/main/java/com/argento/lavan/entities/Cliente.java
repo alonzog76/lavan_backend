@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.argento.lavan.dto.ClienteDto;
+
 @Entity
 public class Cliente {
 
@@ -31,6 +33,21 @@ public class Cliente {
 	
 	Integer sconto;
 
+	public ClienteDto toDto(){
+
+		ClienteDto dto = new ClienteDto();
+		dto.setNome(nome);
+		dto.setCognome(cognome);
+		dto.setIndirizzo(indirizzo);
+		dto.setTelefono(telefono);
+		dto.setCellulare(cellulare);
+		dto.setPartitaIva(partitaIva);
+		dto.setEmail(email);
+		dto.setSconto(sconto);
+
+		return dto;
+	}
+	
 	public Long getId() {
 		return id;
 	}
