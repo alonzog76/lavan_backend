@@ -100,6 +100,7 @@ public class Lavanderia {
 
 	public LavanderiaDto toDto() {
 		LavanderiaDto dto = new LavanderiaDto();
+		dto.setLavanderiaId(id);
 		dto.setNome(nome);
 		dto.setDescrizione(descrizione);
 		return dto;

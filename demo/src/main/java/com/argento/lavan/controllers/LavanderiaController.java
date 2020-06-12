@@ -19,14 +19,14 @@ import com.argento.lavan.entities.Lavanderia;
 import com.argento.lavan.service.LavanderiaService;
 
 
-@RestController(value = "/lavanderie")
+@RestController
 public class LavanderiaController {
 	
 	@Autowired
 	LavanderiaService lavanderiaService;
 	
 	
-	@GetMapping(produces = "application/json")
+	@GetMapping(value="/lavanderie/", produces = "application/json")
 	public ResponseEntity<List<LavanderiaDto>> getLavanderie(){
 		List<Lavanderia> lavanderie = lavanderiaService.retrieveAllLavanderia();
 
@@ -37,7 +37,7 @@ public class LavanderiaController {
 		return new ResponseEntity<>(lavanderiaDtos, HttpStatus.OK);
 	}
 	
-	@GetMapping(value="{id}", produces = "application/json")
+	@GetMapping(value="/lavanderie/{id}", produces = "application/json")
 	public ResponseEntity<LavanderiaDto> getLavanderia(@PathVariable Long id){
 		
 		Lavanderia lavanderia = lavanderiaService.retrieveOneLavanderia(id);
@@ -48,9 +48,8 @@ public class LavanderiaController {
 	 * @param lavanderiaDto
 	 * @return
 	 */
-	@PostMapping(consumes = "application/json", produces = "application/json")
-	public ResponseEntity<LavanderiaDto> createLavanderia(
-			@RequestBody LavanderiaDto lavanderiaDto){
+	@PostMapping(value = "/lavanderie", consumes = "application/json", produces = "application/json")
+	public ResponseEntity<LavanderiaDto> createLavanderia(@RequestBody LavanderiaDto lavanderiaDto){
 		
 		Lavanderia lavanderia = lavanderiaService.createLavanderia(lavanderiaDto);
 		
@@ -62,7 +61,7 @@ public class LavanderiaController {
 	 * @param dto
 	 * @return
 	 */
-	@PutMapping(value="{id}", consumes = "application/json", produces = "application/json")
+	@PutMapping(value="/lavanderie/{id}", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<LavanderiaDto> updateLavanderia(Long id, LavanderiaDto dto){
 		
 		Lavanderia lavanderia = lavanderiaService.updateLavanderia(id, dto);

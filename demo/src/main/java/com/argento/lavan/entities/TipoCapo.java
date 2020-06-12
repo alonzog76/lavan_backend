@@ -1,5 +1,7 @@
 package com.argento.lavan.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +19,7 @@ public class TipoCapo {
 	Long id;
 	
 	@OneToMany
-	Prezzo prezzo;
+	List<Prezzo> prezzi;
 	
 	String name;
 	
