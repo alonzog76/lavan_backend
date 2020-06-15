@@ -16,7 +16,7 @@ import com.argento.lavan.entities.Lavanderia;
 import com.argento.lavan.service.ClienteService;
 import com.argento.lavan.service.LavanderiaService;
 
-@RestController(value = "/clienti")
+@RestController
 public class ClienteController {
 
 	@Autowired
@@ -25,7 +25,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@PostMapping(value = "/lavanderia/{idLavanderia}", consumes = "application/json", produces = "application/json")
+	@PostMapping(value = "/lavanderia/{idLavanderia}/clienti", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<LavanderiaDto> createCliente(
 			@PathVariable(name = "idLavanderia") Long lavanderiaId, @RequestBody ClienteDto clienteDto){
 	

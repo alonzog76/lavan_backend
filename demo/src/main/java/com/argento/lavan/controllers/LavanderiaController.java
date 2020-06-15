@@ -26,7 +26,7 @@ public class LavanderiaController {
 	LavanderiaService lavanderiaService;
 	
 	
-	@GetMapping(value="/lavanderie/", produces = "application/json")
+	@GetMapping(value="/lavanderie", produces = "application/json")
 	public ResponseEntity<List<LavanderiaDto>> getLavanderie(){
 		List<Lavanderia> lavanderie = lavanderiaService.retrieveAllLavanderia();
 
@@ -62,9 +62,9 @@ public class LavanderiaController {
 	 * @return
 	 */
 	@PutMapping(value="/lavanderie/{id}", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<LavanderiaDto> updateLavanderia(Long id, LavanderiaDto dto){
+	public ResponseEntity<LavanderiaDto> updateLavanderia(@PathVariable Long id, @RequestBody LavanderiaDto lavanderiaDto){
 		
-		Lavanderia lavanderia = lavanderiaService.updateLavanderia(id, dto);
+		Lavanderia lavanderia = lavanderiaService.updateLavanderia(id, lavanderiaDto);
 		
 		return new ResponseEntity<>(lavanderia.toDto(), HttpStatus.OK);
 	}
